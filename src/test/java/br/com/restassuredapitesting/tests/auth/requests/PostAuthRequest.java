@@ -14,7 +14,6 @@ public class PostAuthRequest {
             payload.put("username", "admin");
             payload.put("password","password123");
 
-        //System.out.println("token gerado = ");
 
         return given()
                 .header("Content-Type","application/json")
@@ -24,7 +23,9 @@ public class PostAuthRequest {
     }
     @Step("Retornar o token")
     public String getToken(){
-        return "token="+this.token().then().statusCode(200).extract().path("token");
+        String token =  "token="+this.token().then().statusCode(200).extract().path("token");
+        System.out.println("Coockie="+token);
+        return token;
     }
 
 }

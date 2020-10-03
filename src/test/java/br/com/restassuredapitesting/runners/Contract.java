@@ -13,6 +13,7 @@ import org.junit.runners.Suite;
         GetBookingTest.class,
         PutBookingTest.class,
         PostAuthTest.class
+
 })
 
 public class Contract {
