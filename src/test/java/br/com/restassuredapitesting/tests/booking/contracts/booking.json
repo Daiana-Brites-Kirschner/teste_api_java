@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "required": [
+    "firstname",
+    "lastname",
+    "totalprice",
+    "depositpaid",
+    "bookingdates"
+  ],
+  "properties": {
+    "firstname": {
+      "$id": "#/properties/firstname",
+      "type": "string"
+    },
+    "lastname": {
+      "$id": "#/properties/lastname",
+      "type": "string"
+    },
+    "totalprice": {
+      "$id": "#/properties/totalprice",
+      "type": "integer"
+    },
+    "depositpaid": {
+      "$id": "#/properties/depositpaid",
+      "type": "boolean"
+    },
+    "bookingdates": {
+      "$id": "#/properties/bookingdates",
+      "type": "object",
+      "required": [
+        "checkin",
+        "checkout"
+      ],
+      "properties": {
+        "checkin": {
+          "$id": "#/properties/bookingdates/properties/checkin",
+          "type": "string"
+        },
+        "checkout": {
+          "$id": "#/properties/bookingdates/properties/checkout",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

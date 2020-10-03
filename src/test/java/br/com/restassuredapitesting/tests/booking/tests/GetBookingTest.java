@@ -39,14 +39,28 @@ public class GetBookingTest extends BaseTest {
     @Category(Contract.class)
     @DisplayName("Garantir o contrato do retorno da lista de reserva")
     public void garantirContratoListaReserva() throws Exception{
-        getBookingRequest.allBookings().then()
+        getBookingRequest.allBookings()
+                .then()
                 .statusCode(200)
                 .assertThat()
                 .body(
                         matchesJsonSchema(
-                                new File(
-                                         Utils.getContractsBasePath("booking","bookings")
-                                )
+                                new File(Utils.getContractsBasePath("booking","bookings"))
+                        )
+                );
+    }
+    @Test
+    @Severity(SeverityLevel.BLOCKER)
+    @Category(Contract.class)
+    @DisplayName("Garantir o contrato do retorno de uma reserva específica")
+    public void garantirContratoReservaEspecifica() throws Exception{
+        getBookingRequest.oneBooking(8)
+                .then()
+                .statusCode(200)
+                .assertThat()
+                .body(
+                        matchesJsonSchema(
+                                new File(Utils.getContractsBasePath("booking","booking"))
                         )
                 );
     }

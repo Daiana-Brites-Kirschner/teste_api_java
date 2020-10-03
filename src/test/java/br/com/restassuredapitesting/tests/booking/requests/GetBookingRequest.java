@@ -12,6 +12,13 @@ public class GetBookingRequest {
         return given()
                 .header("Content-Type","application/json")
                 .when()
-                .get("booking");
+                .get("booking"); //https://treinamento-api.herokuapp.com/booking
+    }
+    @Step("Buscar uma reserva")
+    public Response oneBooking(Integer id){
+        return given()
+                .header("Content-Type","application/json")
+                .when()
+                .get("booking/"+ id); //https://treinamento-api.herokuapp.com/booking/id
     }
 }
