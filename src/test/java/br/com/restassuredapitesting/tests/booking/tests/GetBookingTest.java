@@ -34,6 +34,7 @@ public class GetBookingTest extends BaseTest {
                 .time(lessThan(3L), TimeUnit.SECONDS)
                 .body("size()", greaterThan(0));
     }
+
     @Test
     @Severity(SeverityLevel.BLOCKER)
     @Category(Contract.class)
@@ -54,7 +55,10 @@ public class GetBookingTest extends BaseTest {
     @Category(Contract.class)
     @DisplayName("Garantir o contrato do retorno de uma reserva específica")
     public void garantirContratoReservaEspecifica() throws Exception{
-        getBookingRequest.oneBooking(8)
+
+        int bookingId = getBookingRequest.allBookings().then().statusCode(200).extract().path("[0].bookingid");
+
+        getBookingRequest.oneBooking(bookingId)
                 .then()
                 .statusCode(200)
                 .assertThat()

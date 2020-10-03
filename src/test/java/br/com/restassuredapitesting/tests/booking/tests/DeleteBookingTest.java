@@ -23,7 +23,7 @@ public class DeleteBookingTest extends BaseTest {
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Category(Acceptance.class)
-    @DisplayName("Excuir um id de reserva")
+    @DisplayName("Excluir um id de reserva")
     public void excluirIddasReservas() throws Exception{
 
         int deletId = getBookingRequest.allBookings().then().statusCode(200).extract().path("[0].bookingid");//[0] Sempre irá chamar toda a lista e extrair o primeiro elemento do array
