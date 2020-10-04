@@ -2,7 +2,7 @@ package br.com.restassuredapitesting.tests.booking.requests;
 
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
-import org.hamcrest.Condition;
+
 
 import static io.restassured.RestAssured.given;
 

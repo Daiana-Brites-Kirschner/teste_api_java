@@ -28,4 +28,8 @@ public class PostAuthRequest {
         return token;
     }
 
+    @Step("Retorna BasicAuth")
+    public String getBasicAuth() {
+        return "Basic YWRtaW46cGFzc3dvcmQxMjM=";
+    }
 }

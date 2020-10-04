@@ -2,6 +2,7 @@ package br.com.restassuredapitesting.tests.booking.tests;
 
 import br.com.restassuredapitesting.suites.Acceptance;
 import br.com.restassuredapitesting.suites.Contract;
+import br.com.restassuredapitesting.suites.E2e;
 import br.com.restassuredapitesting.tests.base.tests.BaseTest;
 import br.com.restassuredapitesting.tests.booking.requests.GetBookingRequest;
 import br.com.restassuredapitesting.utils.Utils;
@@ -17,8 +18,7 @@ import java.io.File;
 import java.util.concurrent.TimeUnit;
 
 import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.Matchers.*;
 
 @Feature("Reservas")
 public class GetBookingTest extends BaseTest {
@@ -195,5 +195,18 @@ public class GetBookingTest extends BaseTest {
                 .statusCode(200)
                 .time(lessThan(5L), TimeUnit.SECONDS);
         //.body("size()", greaterThan(0)); Foi retirado, pois a API está sempre retornando uma lista vazia
+    }
+    @Test
+    @Severity(SeverityLevel.CRITICAL)
+    @Category(E2e.class)
+    @DisplayName("Visualizar erro de servidor 500 quando enviar filtro mal formatado")
+    public void erro500FiltroMalFormatado() throws Exception {
+
+        //Passando um nome no lugar da data para simular um erro 500
+        getBookingRequest.filtroCheckin("Daiana")
+                .then()
+                .statusCode(500)
+                .time(lessThan(3L), TimeUnit.SECONDS)
+                .body(equalTo("Internal Server Error"));
     }
 }
